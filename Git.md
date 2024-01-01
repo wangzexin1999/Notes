@@ -134,4 +134,21 @@ git reset --hard 工作区、暂存区、git仓库都动。
 
 `git stash` 是一个非常有用的功能，可以在你需要暂时切换分支或者进行其他操作时，暂存当前未完成的更改，以便稍后再继续工作。
 
-13.
+13.`git push -u` 命令用于将本地分支推送到远程仓库，并在推送时将本地分支与远程分支进行关联。
+
+- `-u` 或者 `--set-upstream` 参数用来在推送同时设置本地分支与远程分支的关联。这个关联指定了本地分支应该与哪个远程分支进行交互，之后在使用 `git pull` 或 `git push` 时，Git 将会自动识别这个关联。
+
+举个例子，假设你有一个本地分支叫做 `feature`，你想将它推送到名为 `origin` 的远程仓库的 `main` 分支上，并在推送时建立起这两者的关联，你可以执行：
+
+```
+bashCopy code
+git push -u origin feature:main
+```
+
+这会将本地的 `feature` 分支推送到远程的 `main` 分支，并通过 `-u` 参数将本地的 `feature` 分支与远程的 `main` 分支建立关联。
+
+之后，当你在 `feature` 分支上进行修改后，只需执行 `git push` 或 `git pull`，Git 将会自动知道你想要推送到哪个远程分支，或者从哪个远程分支拉取。
+
+14.git push origin master == git push origin master:master 因为要在本地master分支推上去后，在服务器上更新master的分支进度。如果不存在该分支，则会创建master分支。推上去想更改名称，就把后面的名称改掉。
+
+15.
