@@ -151,4 +151,44 @@ git push -u origin feature:main
 
 14.git push origin master == git push origin master:master 因为要在本地master分支推上去后，在服务器上更新master的分支进度。如果不存在该分支，则会创建master分支。推上去想更改名称，就把后面的名称改掉。
 
-15.测试222
+15.`git pull` 命令是一个组合操作，它相当于先执行 `git fetch` 拉取远程仓库的更新，然后再执行 `git merge` 或 `git rebase` 将这些更新合并到当前分支上。
+
+具体来说：
+
+1. `git pull`
+
+   ：它会自动执行两步操作：
+
+   - **`git fetch`**：从远程仓库获取最新的提交和数据到本地。
+   - **`git merge`** 或 **`git rebase`**：将获取的内容合并到当前所在的分支上。
+
+- **`git pull` 的用法：**
+
+  ```
+  bashCopy code
+  git pull <remote-name> <branch-name>
+  ```
+
+  这个命令会从指定远程仓库 `<remote-name>` 中拉取指定分支 `<branch-name>` 的更新并合并到当前所在的分支上。
+
+- **默认行为：**
+
+  如果你不指定远程和分支，`git pull` 将会根据当前分支的追踪设置，从默认的远程仓库和默认跟踪的分支中拉取更新。
+
+- **注意事项：**
+
+  使用 `git pull` 时需要小心，因为它会直接修改你当前工作目录下的文件。如果有冲突，你需要解决这些冲突才能完成合并。
+
+通常在协作开发中，如果你想要获取远程仓库的最新更改并将其合并到你的工作分支上，可以使用 `git pull`。但是，如果你更倾向于控制合并过程，也可以使用 `git fetch` 和 `git merge` 或 `git rebase` 分步执行合并操作。
+
+16.`git fetch` 命令会将远程仓库的最新提交和分支信息下载到本地仓库，但它不会直接修改你的工作区文件。它主要更新了你本地的远程跟踪分支（如 `origin/master`），以便你可以查看远程分支的最新状态和对比本地分支和远程分支的差异。
+
+即使你运行了 `git fetch`，你的工作区中的文件并不会直接改变。要将远程分支的更新合并到你的当前工作分支中，你需要额外运行 `git merge` 或 `git rebase` 命令。例如：
+
+```
+bashCopy code
+git fetch origin
+git merge origin/master  # 或者 git merge origin/main （具体分支名称取决于远程仓库的分支名）
+```
+
+上述命令将拉取远程仓库的更新，然后将远程 `origin` 的 `master` 分支合并到你当前的分支上。如果有冲突，你需要解决这些冲突后再进行提交。
